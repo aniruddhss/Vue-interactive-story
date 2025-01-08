@@ -28,9 +28,9 @@ export default {
   data() {
     return {
       currentNode: storyData[0],
-      fullText: storyData[0].text, // Full text to display
-      displayedText: "", // Text being displayed with typewriter effect
-      typewriterInterval: null, // Interval for the typewriter effect
+      fullText: storyData[0].text, 
+      displayedText: "", 
+      typewriterInterval: null, 
     };
   },
   mounted() {
@@ -45,12 +45,12 @@ export default {
           this.displayedText += this.fullText[index];
           index++;
         } else {
-          clearInterval(this.typewriterInterval); // Stop when text is fully displayed
+          clearInterval(this.typewriterInterval); 
         }
-      }, 50); // Adjust typing speed here (50ms per character)
+      }, 50); //typing speed in animation
     },
     selectChoice(nextId) {
-      clearInterval(this.typewriterInterval); // Clear previous interval
+      clearInterval(this.typewriterInterval); 
       const nextNode = storyData.find((node) => node.id === nextId);
       this.currentNode = nextNode;
       this.fullText = nextNode.text;
@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style scoped>
-/* General Styling */
+
 .story {
   text-align: center;
   color: rgb(255, 255, 255);
@@ -73,7 +73,7 @@ export default {
   font-family: montserrat;
 }
 
-/* Button Styling */
+
 .choices button {
   font-family: montserrat;
   margin: 10px;
@@ -93,10 +93,10 @@ export default {
   background-color: #297fb900;
   border: 1px solid #ffffff;
   transition-duration: 0.8s;
-  transform: scale(1.1); /* Scale on hover */
+  transform: scale(1.1); 
 }
 
-/* Background Styling */
+
 #main {
   background-image: url(https://images.pexels.com/photos/14729992/pexels-photo-14729992.jpeg);
   background-size: cover;
@@ -109,7 +109,7 @@ export default {
   width: 100vw;
 }
 
-/* Fade Animation */
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -117,11 +117,11 @@ export default {
 
 .fade-enter-from {
   opacity: 0;
-  transform: translateY(20px); /* Slide up on enter */
+  transform: translateY(20px); 
 }
 
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(-20px); /* Slide down on leave */
+  transform: translateY(-20px); 
 }
 </style>

@@ -11,7 +11,7 @@ import Story from './components/Story.vue'
 <style>
 body{
   
-background-color: black;
+background-color: rgb(49, 49, 49);
 
 }
 
