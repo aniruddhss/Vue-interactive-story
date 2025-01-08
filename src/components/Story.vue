@@ -15,6 +15,7 @@
           >
             {{ choice.text }}
           </button>
+          
         </div>
       </div>
     </transition>
@@ -30,22 +31,28 @@ export default {
       currentNode: storyData[0],
       fullText: storyData[0].text, 
       displayedText: "", 
-      typewriterInterval: null, 
+      typewriterInterval: null,
+      typingSound: new Audio('/src/assets/Keyboard-Typing(chosic.com).mp3'),
     };
   },
   mounted() {
+    this.typingSound.loop = true;
+    this.typingSound.volume = 1.0;
     this.startTypewriterEffect();
   },
   methods: {
     startTypewriterEffect() {
       this.displayedText = "";
       let index = 0;
+      this.typingSound.play();
       this.typewriterInterval = setInterval(() => {
         if (index < this.fullText.length) {
           this.displayedText += this.fullText[index];
+          
           index++;
         } else {
           clearInterval(this.typewriterInterval); 
+          this.typingSound.pause(); 
         }
       }, 50); //typing speed in animation
     },
