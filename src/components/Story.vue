@@ -24,6 +24,9 @@
 
 <script>
 import { storyData } from "../story";
+import typingSoundPath from '../assets/Keyboard-Typing.mp3';
+import buttonClickSoundPath from '../assets/mouse-click.wav';
+
 
 export default {
   data() {
@@ -32,12 +35,14 @@ export default {
       fullText: storyData[0].text, 
       displayedText: "", 
       typewriterInterval: null,
-      typingSound: new Audio('/src/assets/Keyboard-Typing(chosic.com).mp3'),
+      typingSound: new Audio(typingSoundPath), 
+      buttonClickSound: new Audio(buttonClickSoundPath),
     };
   },
   mounted() {
     this.typingSound.loop = true;
     this.typingSound.volume = 1.0;
+    this.buttonClickSound.volume = 0.8;
     this.startTypewriterEffect();
   },
   methods: {
@@ -57,6 +62,7 @@ export default {
       }, 50); //typing speed in animation
     },
     selectChoice(nextId) {
+      this.buttonClickSound.play();
       clearInterval(this.typewriterInterval); 
       const nextNode = storyData.find((node) => node.id === nextId);
       this.currentNode = nextNode;
