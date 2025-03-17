@@ -32,7 +32,7 @@ export const storyData = [
     },
     {
       id: 4,
-      text: "You open your email and see an application for the HENNGE GIP program. The name 'Aniruddh' seems to glow slightly. You feel like this is important. What do you do?",
+      text: "You open your email and see an application for the Mercari Internship program. The name 'Aniruddh' seems to glow slightly. You feel like this is important. What do you do?",
       choices: [
         { text: "Open and review Aniruddh's application", next: 6 },
         { text: "Skip it and move to the next application", next: 7 }

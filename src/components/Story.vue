@@ -1,12 +1,12 @@
 <template>
   <div id="main">
     <transition name="fade" mode="out-in">
-      <!-- Show the Begin button if the journey hasn't started -->
+      
       <div v-if="!isJourneyStarted" class="begin-button-container">
         <button class="begin-button" @click="startJourney">Begin the Journey</button>
       </div>
 
-      <!-- Show the story if the journey has started -->
+      
       <div v-else class="story" :key="currentNode.id">
         <h1>{{ displayedText }}</h1>
         <div class="choices">
@@ -31,10 +31,10 @@ import buttonClickSoundPath from '../assets/mouse-click.wav';
 export default {
   data() {
     return {
-      isJourneyStarted: false, // Flag to track if the journey has started
-      currentNode: storyData[0], // Start with the first node
-      fullText: storyData[0].text, // Full text for the first node
-      displayedText: "", // Text being displayed with the typewriter effect
+      isJourneyStarted: false, 
+      currentNode: storyData[0], 
+      fullText: storyData[0].text, 
+      displayedText: "", 
       typewriterInterval: null,
       typingSound: new Audio(typingSoundPath),
       buttonClickSound: new Audio(buttonClickSoundPath),
@@ -46,39 +46,39 @@ export default {
     this.buttonClickSound.volume = 0.8;
   },
   methods: {
-    // Method to start the journey when the "Begin the Journey" button is clicked
+    
     startJourney() {
-      this.isJourneyStarted = true; // Set journey as started
-      this.fullText = this.currentNode.text; // Get text for the first node
-      this.startTypewriterEffect(); // Start typing effect
+      this.isJourneyStarted = true; 
+      this.fullText = this.currentNode.text; 
+      this.startTypewriterEffect(); 
     },
 
-    // Method to start the typing effect
+   
     startTypewriterEffect() {
-      this.displayedText = ""; // Reset the displayed text
+      this.displayedText = "";
       let index = 0;
-      this.typingSound.play(); // Start typing sound
+      this.typingSound.play(); 
       this.typewriterInterval = setInterval(() => {
         if (index < this.fullText.length) {
           this.displayedText += this.fullText[index];
           index++;
         } else {
           clearInterval(this.typewriterInterval);
-          this.typingSound.pause(); // Pause typing sound when typing is complete
+          this.typingSound.pause(); 
         }
-      }, 50); // Speed of typing effect (in ms)
+      }, 50); 
     },
 
-    // Method to handle when a choice is selected
+   
     selectChoice(nextId) {
-      this.buttonClickSound.play(); // Play click sound
-      clearInterval(this.typewriterInterval); // Stop the current typing effect
+      this.buttonClickSound.play(); 
+      clearInterval(this.typewriterInterval); 
 
       const nextNode = storyData.find((node) => node.id === nextId);
       this.currentNode = nextNode;
       this.fullText = nextNode.text;
 
-      this.startTypewriterEffect(); // Start typing effect for the next part
+      this.startTypewriterEffect();
     },
   },
 };
